@@ -1,0 +1,11 @@
+{
+  "navn": "gastromands bolognese",
+  "beskrivelse": "meget lækker",
+  "fremgangsmetode": "yes",
+  "tid": "8h",
+  "ingredienser": {
+    "løg" : "8",
+    "oksekød": "2kg",
+    "gulerødder": "500gr"
+  }
+}
