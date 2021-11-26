@@ -21,6 +21,7 @@ jobs:
           git fetch
           git checkout site
           git rebase main
+          git status
           python magi.py --buildsite
           git config --global user.name 'Your Name'
           git config --global user.email 'your-username@users.noreply.github.com'
