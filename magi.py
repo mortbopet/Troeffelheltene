@@ -52,7 +52,7 @@ def parseRecipe(path):
 
 
 def createCookbook():
-    with open(os.path.join(OUTDIR, 'lillelaban.md'), 'w') as f:
+    with open(os.path.join(OUTDIR, 'README.md'), 'w') as f:
         f.write(f'# Trøffelheltenes opskriftsgrotte\n\n')
 
         path = os.path.join('opskriftsgrotten', "opskrifter")
