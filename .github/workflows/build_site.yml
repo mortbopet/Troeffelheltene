@@ -19,5 +19,7 @@ jobs:
       - name: Run a one-line script
         run: |
           python magi.py --buildsite
+          git config --global user.name 'Your Name'
+          git config --global user.email 'your-username@users.noreply.github.com'
           git commit -am "build site"
           git push origin site
