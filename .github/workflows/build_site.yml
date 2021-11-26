@@ -16,9 +16,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Run a one-line script
+      - name: Build site
         run: |
           python magi.py --buildsite
+          find .
+          git status
           git config --global user.name 'Your Name'
           git config --global user.email 'your-username@users.noreply.github.com'
           git commit -am "build site"
