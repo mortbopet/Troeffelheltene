@@ -20,7 +20,7 @@ jobs:
         run: |
           git fetch
           git checkout site
-          git rebase main
+          git rebase --onto main
           git status
           python magi.py --buildsite
           git config --global user.name 'Your Name'
