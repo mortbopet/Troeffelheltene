@@ -17,6 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run a one-line script
-        run: python magi.py --buildsite
+        run: |
+          python magi.py --buildsite
           git commit -am "build site"
           git push origin site
