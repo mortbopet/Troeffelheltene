@@ -19,9 +19,8 @@ jobs:
       - name: Build site
         run: |
           python magi.py --buildsite
-          find .
-          git status
           git config --global user.name 'Your Name'
           git config --global user.email 'your-username@users.noreply.github.com'
+          git add -A .
           git commit -am "build site"
           git push origin site
