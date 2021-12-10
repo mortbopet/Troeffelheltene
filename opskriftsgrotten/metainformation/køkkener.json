@@ -1,3 +1,19 @@
 {
-  "køkkener": ["italiensk", "marokkansk", "mellemøsten", "thai", "vietnamesisk"]
+  "køkkener": [
+    "italiensk", 
+    "marokkansk", 
+    "mellemøsten", 
+    "thai", 
+    "vietnamesisk", 
+    "dansk", 
+    "japansk", 
+    "koreansk", 
+    "kinesisk", 
+    "indisk",
+    "murica",
+    "spansk",
+    "fransk",
+    "engelsk",
+    "græsk/middelhav"
+  ]
 }

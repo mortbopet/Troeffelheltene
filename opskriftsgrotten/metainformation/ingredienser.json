@@ -1,9 +1,101 @@
 {
-  "grøntsager": ["løg", "peberfrugt"],
+  "grøntsager og rudfrugter": [
+    "rødløg",
+    "løg", 
+    "peberfrugt",
+    "forårsløg",
+    "squash",
+    "gulerødder",
+    "tomater",
+    "AGURK",
+    "pastinak",
+    "knoldselleri",
+    "bladselleri",
+    "kartofler",
+    "hvidløg",
+    "grønne asparges",
+    "rødbeder",
+    "broccoli",
+    "champignon",
+    "perleløg",
+    "ærter",
+    "søde kartofler",
+    "soyabønner",
+    "bønner",
+    "chili"
+  ],
   "frugt": [
-    "æble", "pærer"
+    "æble", "pærer", "avocado", "lime", "citron"
+  ],
+  "gryn, frø og kerner": [
+    "græskarkerner",
+    "havregryn",
+    "chiafrø"
   ],
   "kød" : [
-    "kylling", "oksekød"
+    "hel kylling",
+    "kyllingebryst",
+    "kyllingefilet",
+    "kyllingeoverlår",
+    "kyllingeunderlår",
+    "kylling lårmix",
+    "kylling lårkød",
+
+    "kalkunbryst",
+    "kalkunoverlår",
+
+    "oksekød",
+    "hakket oksekød",
+    "oksespidsbryst",
+    "entrocote",
+
+    "medister",
+    "pancetta",
+    "guanciale"
+  ],
+  "dåse/glas": [
+    "pesto", 
+    "kokosmælk", 
+    "hakkede tomater", 
+    "flåede tomater", 
+    "tomatpuré",
+    "tomat passata", 
+    "hvide asparges", 
+    "rød karrypasta", 
+    "salsa", 
+    "kokosolie"
+  ],
+  "saucer": [
+    "soyasauce",
+    "hoisinsauce",
+    "pokesauce",
+    "bbq sauce",
+    "chilisauce"
+  ],
+  "væsker": [
+    "citronsaft",
+    "honning",
+    "creme fraiche"   
+  ],
+  "mejeriprodukter": [
+    "fløde", 
+    "madlavningsfløde", 
+    "æg", 
+    "hvedemel", 
+    "sødmælk", 
+    "minimælk", 
+    "skummetmælk", 
+    "kernemælk"
+  ],
+  "krydderier": [
+    "salt", 
+    "peber", 
+    "paprika", 
+    "timian", 
+    "oregano", 
+    "basilikum", 
+    "gurkemeje", 
+    "karry", 
+    "chili"
   ]
 }
