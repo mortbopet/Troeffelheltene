@@ -10,17 +10,21 @@ OUTDIR = None
 class Opskrift:
     filnavn: str = ""
     navn: str = ""
+    banner: str = ""
     ingredienser: list = lambda: []
-    beskrivelse: str = ""
     tid: str = ""
     køkken: str = ""
     kommentarer: str = ""
     fremgangsmetode: str = ""
+    basename: str = ""
 
     def skriv_til_md(self, udgangsFilnavn):
         with open(udgangsFilnavn, 'w') as f:
             f.write(f'## {self.navn}\n\n')
-            f.write(f'### Beskrivelse: {self.beskrivelse}\n')
+            f.write(f'![et rigtig flot billede burde være lige her]({self.banner})\n')
+            f.write(f'### Beskrivelse:\n')
+            with open(os.path.splitext(self.filnavn)[0] + ".md") as desc:
+                f.write(desc.read())
             f.write(f'### Tid: {self.tid}\n')
             f.write(f'### Køkken: {self.køkken}\n')
             f.write(f'### Ingredienser:\n')
@@ -36,11 +40,12 @@ def parseRecipe(path):
     with open(path, 'r') as f:
         data = json.loads(f.read())
         opskrift = Opskrift()
-        opskrift.filnavn = os.path.basename(path)
-        opskrift.filnavn = os.path.splitext(opskrift.filnavn)[0]
+        opskrift.filnavn = path
+        opskrift.basename = os.path.basename(path)
+        opskrift.basename = os.path.splitext(opskrift.basename)[0]
+        opskrift.banner = data['banner']
         opskrift.navn = data['navn']
         opskrift.ingredienser = data['ingredienser']
-        opskrift.beskrivelse = data['beskrivelse']
         if 'tid' in data:
             opskrift.tid = data['tid']
         opskrift.tid = data['tid']
@@ -60,11 +65,11 @@ def createCookbook():
         for opskrift in os.listdir(path):
             if opskrift.endswith('.json'):
                 opskrift = parseRecipe(os.path.join(path, opskrift))
-                opskrift.skriv_til_md(os.path.join(OUTDIR, opskrift.filnavn + ".md"))
+                opskrift.skriv_til_md(os.path.join(OUTDIR, opskrift.basename + ".md"))
                 opskrifter.append(opskrift)
 
         f.write(f'## Opskrifter:\n')
-        [f.write(f'* [{opskrift.navn}]({opskrift.filnavn}.md)\n') for opskrift in opskrifter]
+        [f.write(f'* [{opskrift.navn}]({opskrift.basename}.md)\n') for opskrift in opskrifter]
 
 
 if __name__ == '__main__':
