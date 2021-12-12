@@ -6,6 +6,7 @@ os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 OUTDIR = None
 
+
 @dataclass
 class Opskrift:
     filnavn: str = ""
@@ -15,13 +16,14 @@ class Opskrift:
     tid: str = ""
     køkken: str = ""
     kommentarer: str = ""
-    fremgangsmetode: str = ""
     basename: str = ""
 
     def skriv_til_md(self, udgangsFilnavn):
         with open(udgangsFilnavn, 'w') as f:
             f.write(f'## {self.navn}\n\n')
-            f.write(f'![et rigtig flot billede burde være lige her]({self.banner})\n')
+            f.write(
+                f'![et rigtig flot billede burde være lige her]({self.banner})\n'
+            )
             f.write(f'### Beskrivelse:\n')
             with open(os.path.splitext(self.filnavn)[0] + ".md") as desc:
                 f.write(desc.read())
@@ -29,8 +31,6 @@ class Opskrift:
             f.write(f'### Køkken: {self.køkken}\n')
             f.write(f'### Ingredienser:\n')
             [f.write(f'* {ingrediens}\n') for ingrediens in self.ingredienser]
-            f.write(f'### Fremgangsmetode:\n')
-            f.write(f'{self.fremgangsmetode}\n')
             f.write(f'### Kommentarer:\n')
             f.write(f'{self.kommentarer}')
 
@@ -65,18 +65,25 @@ def createCookbook():
         for opskrift in os.listdir(path):
             if opskrift.endswith('.json'):
                 opskrift = parseRecipe(os.path.join(path, opskrift))
-                opskrift.skriv_til_md(os.path.join(OUTDIR, opskrift.basename + ".md"))
+                opskrift.skriv_til_md(
+                    os.path.join(OUTDIR, opskrift.basename + ".md"))
                 opskrifter.append(opskrift)
 
         f.write(f'## Opskrifter:\n')
-        [f.write(f'* [{opskrift.navn}]({opskrift.basename}.md)\n') for opskrift in opskrifter]
+        [
+            f.write(f'* [{opskrift.navn}]({opskrift.basename}.md)\n')
+            for opskrift in opskrifter
+        ]
 
 
 if __name__ == '__main__':
     # argparser with an optional buildsite argument
     import argparse
-    parser = argparse.ArgumentParser(description='Create a cookbook from the opskriftsgrotten')
-    parser.add_argument('--buildsite', action='store_true', help='Build the site')
+    parser = argparse.ArgumentParser(
+        description='Create a cookbook from the opskriftsgrotten')
+    parser.add_argument('--buildsite',
+                        action='store_true',
+                        help='Build the site')
     args = parser.parse_args()
 
     if args.buildsite:
