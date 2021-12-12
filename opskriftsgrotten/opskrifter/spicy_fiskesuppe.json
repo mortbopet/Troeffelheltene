@@ -1,6 +1,7 @@
 {
   "navn": "\"Munden gør ondt\" gør godt, fiskesuppe",
   "banner": "",
+  "køkkener": ["kinesisk", "vietnamesisk"],
   "tid": "1h",
   "ingredienser": {
     "forårsløg": "",

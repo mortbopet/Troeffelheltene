@@ -14,25 +14,23 @@ class Opskrift:
     banner: str = ""
     ingredienser: list = lambda: []
     tid: str = ""
-    køkken: str = ""
-    kommentarer: str = ""
+    køkkener: list = lambda: []
     basename: str = ""
 
     def skriv_til_md(self, udgangsFilnavn):
         with open(udgangsFilnavn, 'w') as f:
             f.write(f'## {self.navn}\n\n')
             f.write(
-                f'![et rigtig flot billede burde være lige her]({self.banner})\n'
+                f'![KOKKEN HAR VIST GLEMT AT TAGE ET BILLEDE AF MADEN! måske er det ikke instaworthy? hvem ved, kig tilbage i fremtiden.]({self.banner})\n'
             )
+            f.write(f'### Tid: {self.tid}\n')
+            køkkener = ','.join(self.køkkener)
+            f.write(f'### Køkkener: {køkkener}\n')
+            f.write(f'### Ingredienser:\n')
+            [f.write(f'* {ingrediens}\n') for ingrediens in self.ingredienser]
             f.write(f'### Beskrivelse:\n')
             with open(os.path.splitext(self.filnavn)[0] + ".md") as desc:
                 f.write(desc.read())
-            f.write(f'### Tid: {self.tid}\n')
-            f.write(f'### Køkken: {self.køkken}\n')
-            f.write(f'### Ingredienser:\n')
-            [f.write(f'* {ingrediens}\n') for ingrediens in self.ingredienser]
-            f.write(f'### Kommentarer:\n')
-            f.write(f'{self.kommentarer}')
 
 
 def parseRecipe(path):
@@ -49,10 +47,11 @@ def parseRecipe(path):
         if 'tid' in data:
             opskrift.tid = data['tid']
         opskrift.tid = data['tid']
-        if 'køkken' in data:
-            opskrift.køkken = data['køkken']
-        if 'kommentarer' in data:
-            opskrift.kommentarer = data['kommentarer']
+        if 'køkkener' in data:
+            opskrift.køkkener = data['køkkener']
+        else:
+            opskrift.køkkener = ["N/A"]
+        print(opskrift.køkkener)
         return opskrift
 
 
