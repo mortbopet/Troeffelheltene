@@ -51,7 +51,7 @@ def parseRecipe(path):
             opskrift.køkkener = data['køkkener']
         else:
             opskrift.køkkener = ["N/A"]
-        print(opskrift.køkkener)
+        # print(opskrift.køkkener)
         return opskrift
 
 
@@ -75,6 +75,30 @@ def createCookbook():
         ]
 
 
+def CheckMetadataDuplicates():
+    duplicates = {}
+    metainfo_filepath = os.path.join('opskriftsgrotten', 'metainformation')
+    for metainfo_file in os.listdir(metainfo_filepath):
+        if metainfo_file.endswith('.json'):
+            # print("checking metainfo file =>", metainfo_file)
+            with open(os.path.join(metainfo_filepath, metainfo_file), 'r') as file:
+                data = json.loads(file.read())
+                # print(data)
+                for list_key in data:
+                    seen = set()
+                    # print("checking list", list_key, "in", metainfo_file)
+                    for item in data[list_key]:
+                        if item not in seen:
+                            seen.add(item)
+                        else:
+                            if metainfo_file not in duplicates:
+                                duplicates[metainfo_file] = dict()
+                            if list_key not in duplicates[metainfo_file]:
+                                duplicates[metainfo_file][list_key] = set()
+                            duplicates[metainfo_file][list_key].add(item)
+    return duplicates
+
+
 if __name__ == '__main__':
     # argparser with an optional buildsite argument
     import argparse
@@ -93,4 +117,12 @@ if __name__ == '__main__':
     if not os.path.exists(OUTDIR):
         os.makedirs(OUTDIR)
 
-    createCookbook()
+    duplicates = CheckMetadataDuplicates()
+
+    if duplicates:
+        print("Duplicates found.")
+        for metainfo_file in duplicates:
+            print(metainfo_file + ":", duplicates[metainfo_file])
+    else:
+        print("No duplicates found.")
+        createCookbook()

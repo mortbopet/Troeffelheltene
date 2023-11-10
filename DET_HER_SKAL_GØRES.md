@@ -13,5 +13,9 @@
   - Constraints er:
     - et køkken skal være beskrevet under opskriftsgrotten/metainformation/køkkener.json
     - en ingrediens skal være beskrevet under opskriftsgrotten/metainformation/ingerdienser.json
-    - Ingen duplicates i ingredienser/køkken
   - En CI robot som autoformatterer alle JSON filer så det ikke bliver kaos
+- input form på hjemmesiden, som gør det nemt at lagre en ny opskrift så man ikke skal skrive den ind i json format
+- filtrering/søgning:
+  - gør det muligt at se liste af retter/opskrifter for et bestemt køkken - "jeg har lyst til en bestemt type mad"
+  - gør det muligt at se liste af retter/opskrifter som indeholder en eller flere bruger-angivede ingredienser - "jeg har disse ingredienser, hvad kan jeg lave med det?"
+  - find opskrifter som matcher både et køkken og en liste af ingredienser
