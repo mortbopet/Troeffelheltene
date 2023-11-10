@@ -25,7 +25,11 @@
     "chili"
   ],
   "frugt": [
-    "æble", "pærer", "avocado", "lime", "citron"
+    "æble", 
+    "pærer", 
+    "avocado", 
+    "lime", 
+    "citron"
   ],
   "gryn, frø og kerner": [
     "græskarkerner",
