@@ -48,9 +48,12 @@ def parseRecipe(path):
             opskrift.tid = data['tid']
         opskrift.tid = data['tid']
         if 'køkkener' in data:
+            for køkken in data['køkkener']:
+                if køkken not in METAINFO_KØKKENER:
+                    raise KeyError("Hallo masterchef, den der køkken har vi ikke i metadata: " + køkken)
             opskrift.køkkener = data['køkkener']
         else:
-            opskrift.køkkener = ["N/A"]
+            raise KeyError("Eow din bums, la vær og spil smart okay, der mangler et køkken i din opskrift: " + opskrift.navn)
         # print(opskrift.køkkener)
         return opskrift
 
@@ -75,18 +78,26 @@ def createCookbook():
         ]
 
 
-def CheckMetadataDuplicates():
+# def checkMetaDataDuplicatesNew():
+#     metainfo_files = os.path.join('opskriftsgrotten', 'metainformation')
+#     for metainfo_file in os.listdir(metainfo_files):
+#         if metainfo_file.endswith('.json'):
+#             with open(os.path.join(metainfo_files, metainfo_file), 'r') as file:
+#                 data = json.loads(file.read())
+#                 print(data)
+#                 for list_key in data:
+#                     if not len(set(data[list_key])) == len(data[list_key]):
+
+
+def wallahCheckDetDerMetadata():
     duplicates = {}
     metainfo_filepath = os.path.join('opskriftsgrotten', 'metainformation')
     for metainfo_file in os.listdir(metainfo_filepath):
         if metainfo_file.endswith('.json'):
-            # print("checking metainfo file =>", metainfo_file)
             with open(os.path.join(metainfo_filepath, metainfo_file), 'r') as file:
                 data = json.loads(file.read())
-                # print(data)
                 for list_key in data:
                     seen = set()
-                    # print("checking list", list_key, "in", metainfo_file)
                     for item in data[list_key]:
                         if item not in seen:
                             seen.add(item)
@@ -117,12 +128,15 @@ if __name__ == '__main__':
     if not os.path.exists(OUTDIR):
         os.makedirs(OUTDIR)
 
-    duplicates = CheckMetadataDuplicates()
+    METAINFO_KØKKENER = json.loads(open(os.path.join('opskriftsgrotten', 'metainformation', 'køkkener.json'), 'r').read())['køkkener']
+
+    duplicates = wallahCheckDetDerMetadata()
+    # checkMetaDataDuplicatesNew()
 
     if duplicates:
-        print("Duplicates found.")
+        print("Eowww. HARAM metadata, fix det!!")
         for metainfo_file in duplicates:
             print(metainfo_file + ":", duplicates[metainfo_file])
     else:
-        print("No duplicates found.")
+        print("Mashallah habibi, vores metadata er halal.")
         createCookbook()

@@ -12,6 +12,16 @@ on:
   workflow_dispatch:
 
 jobs:
+  formatting:
+    runs-on: ubuntu-latest
+  duplicates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check for duplicates in meta-info
+        run: |
+          git fetch
+          git checkout duplicates
   build:
     runs-on: ubuntu-latest
     steps:
